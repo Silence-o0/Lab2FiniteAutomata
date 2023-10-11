@@ -9,7 +9,8 @@ void dfs(int quantity, int *start, int *fin, int s, bool *visited) {
     }
 }
 
-bool *find_states(int quantity_state, int quantity_trans, int *start, int *fin, int start_state, bool *visited) {
+void *find_states(int quantity_state, int quantity_trans, int *start, int *fin,
+                  int start_state, bool *visited) {
     for(int i = 0; i < quantity_state; i++) {
         visited[i] = false;
     }
@@ -20,7 +21,7 @@ int main() {
     FILE *file;
     int A, S, s0, F_len;
 
-    file = fopen("a3.txt", "r");
+    file = fopen("a7.txt", "r");
 
     if (NULL == file) {
         printf("File can't be opened.\n");
@@ -51,7 +52,8 @@ int main() {
 
     bool reverse_visited_states[S];
     for (int k = 0; k < F_len; k++) {
-        find_states(S, j, fin, start, F[k], reverse_visited_states);
+        find_states(S, j, fin, start,
+                    F[k], reverse_visited_states);
 
         for(int i = 0; i < S; i++) {
             if (!reverse_result[i] && reverse_visited_states[i])
